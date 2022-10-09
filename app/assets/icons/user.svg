@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="158px" height="158px" viewBox="0 0 158 158" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <rect id="path-1" x="0" y="0" width="158" height="158"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <g id="Rectangle-24">
+                <g>
+                    <g>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#E9ECED" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <path d="M27.7197422,168.918327 L27.7197422,156.223352 C27.7197422,127.091796 51.2719184,103.476004 80.325,103.476004 C109.378082,103.476004 132.930258,127.091796 132.930258,156.223352 L132.930258,168.918327 L27.7197422,168.918327 Z" fill="#023048" fill-rule="nonzero" opacity="0.482584635" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+            <path d="M80.5,98 C94.75,98 109,85.2401154 109,69.5 C109,53.7598846 96.2401154,41 80.5,41 C64.7598846,41 52,53.7598846 52,69.5 C52,85.2401154 66.25,98 80.5,98 Z" id="Oval-2" fill="#023048" fill-rule="nonzero" opacity="0.482584635"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar renders the navbar when menu.default is a valid array 1`] = `undefined`;
+
+exports[`Navbar renders the navbar when menu.default is empty array 1`] = `undefined`;

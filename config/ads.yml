@@ -1,0 +1,33 @@
+dfp_ads:
+  load_ads_synchronously: false
+  enable_ads: true
+  enable_lazy_load_ads: true
+  fetch_margin_percent: 0
+  render_margin_percent: 0
+  mobile_scaling: 0
+network_id: ""
+slots:
+  top_ad:
+    ad_unit: ""
+    sizes: [[728, 90], [320, 50]]
+    view_port_size_mapping:
+      - viewport: [728, 0]
+        sizes: [[728, 90]]
+      - viewport: [0, 0]
+        sizes: [[320, 50]]
+  listing_page_ads:
+    ad_unit: ""
+    sizes: [[728, 90], [300, 250]]
+    view_port_size_mapping:
+      - viewport: [728, 0]
+        sizes: [[728, 90]]
+      - viewport: [0, 0]
+        sizes: [[300, 250]]
+  story_page_ads:
+    ad_unit: ""
+    sizes: [[728, 90], [300, 250]]
+    view_port_size_mapping:
+      - viewport: [728, 0]
+        sizes: [[728, 90]]
+      - viewport: [0, 0]
+        sizes: [[300, 250]]

@@ -1,0 +1,22 @@
+.wrapper {
+  :global .form-wrapper {
+    border: 1px solid var(--grey-dark);
+    border-radius: 8px;
+  }
+}
+
+.header {
+  padding: 6px;
+  border-bottom: 1px solid var(--grey-dark);
+  text-align: center;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.back-btn {
+  font-size: var(--base);
+  color: var(--brand-secondary);
+  position: absolute;
+  left: 16px;
+  padding-top: 12px;
+}

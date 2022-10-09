@@ -1,0 +1,79 @@
+import { generateCommonRoutes } from "@quintype/framework/server/generate-routes";
+import { PAGE_TYPE, TAG_PAGE_URL_PREFIX } from "../isomorphic/constants";
+
+// Static Routes are not part of the PWA. Also, they aren't part of the JS bundle
+export const STATIC_ROUTES = [
+  {
+    path: "/about-us",
+    pageType: PAGE_TYPE.STATIC_PAGE,
+    renderParams: { contentTemplate: "./about-us" }
+  },
+  {
+    path: "/preview/story",
+    pageType: PAGE_TYPE.STORY_PREVIEW,
+    exact: true,
+    renderParams: { contentTemplate: "./story-preview" },
+    disableIsomorphicComponent: false
+  },
+  {
+    path: "/preview/home",
+    pageType: PAGE_TYPE.HOME_PREVIEW,
+    exact: true,
+    renderParams: { contentTemplate: "./story-preview" },
+    disableIsomorphicComponent: false
+  },
+  {
+    path: "/ampstories/*",
+    pageType: PAGE_TYPE.VISUAL_STORY,
+    exact: true
+  }
+];
+
+const ISOMORPHIC_ROUTES = [
+  {
+    path: "/template-options",
+    pageType: PAGE_TYPE.CATALOG_PAGE,
+    exact: true,
+    skipPWA: true
+  },
+  {
+    path: "/preview/story/:encryptedKey",
+    pageType: PAGE_TYPE.STORY_PUBLIC_PREVIEW_PAGE,
+    exact: true
+  },
+
+  {
+    path: `${TAG_PAGE_URL_PREFIX}:tagSlug`,
+    pageType: PAGE_TYPE.TAG_PAGE,
+    exact: true
+  },
+  { path: "/search", pageType: PAGE_TYPE.SEARCH_PAGE, exact: true },
+  {
+    path: "/forms/:formSlug",
+    pageType: PAGE_TYPE.FORM_PAGE,
+    exact: true
+  },
+  { path: "/collection/:collectionSlug", pageType: PAGE_TYPE.COLLECTION_PAGE, exact: true, skipPWA: true },
+  { path: "/author/:authorSlug", pageType: PAGE_TYPE.AUTHOR_PAGE, exact: true },
+  {
+    path: "/auth/reset-password",
+    pageType: PAGE_TYPE.RESET_PASSWORD_PAGE,
+    exact: true
+  },
+  {
+    path: "/profile",
+    pageType: PAGE_TYPE.PROFILE_PAGE,
+    exact: true
+  },
+  {
+    path: "/user-login",
+    pageType: PAGE_TYPE.USER_LOGIN,
+    exact: true
+  }
+];
+
+export function generateRoutes(config, domainSlug = undefined) {
+  return config.memoize(`routes${domainSlug}`, () =>
+    ISOMORPHIC_ROUTES.concat(generateCommonRoutes(config, domainSlug))
+  );
+}

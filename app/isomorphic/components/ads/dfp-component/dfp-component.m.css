@@ -1,0 +1,25 @@
+.ad-slot {
+  display: flex;
+  justify-content: center; /* For other ads, where width isn't specified */
+  overflow: auto;
+  margin: 0 auto 16px;
+  z-index: var(--zlevel0);
+}
+
+.ad-slot-size-320x50 {
+  width: 320px;
+  height: 50px;
+  @media screen and (min-width: 728px) {
+    width: 728px;
+    height: 90px;
+  }
+}
+
+.ad-slot-size-300x250 {
+  width: 300px;
+  height: 250px;
+  @media screen and (min-width: 728px) {
+    width: 728px;
+    height: 90px;
+  }
+}

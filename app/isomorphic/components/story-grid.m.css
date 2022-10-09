@@ -1,0 +1,7 @@
+.story-grid-item-image {
+  width: 100%;
+}
+
+.placeholder {
+  background-color: var(--background-color);
+}

@@ -1,0 +1,80 @@
+.profile-page {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.profile-card {
+  margin: 0 auto;
+  max-width: var(--profile-card-width);
+}
+
+.user-icon {
+  height: 160px;
+  width: 160px;
+  margin: 0 100px;
+  border-radius: 50%;
+}
+
+.avatar {
+  margin-bottom: 40px;
+}
+
+.avatar-image {
+  margin: 0 100px;
+  border-radius: 50%;
+}
+
+.fields {
+  margin-bottom: 16px;
+}
+
+.not-logged-in {
+  font-size: var(--large);
+  text-align: center;
+}
+
+.my-account {
+  font-size: var(--medium);
+  padding: 0 16px;
+}
+
+.button {
+  --border-color: var(--brand-primary);
+  --text-color: var(--brand-primary-dark);
+  padding: 4px 40px;
+  border: 1px solid var(--border-color);
+  background: var(--background-color);
+  color: var(--text-color);
+  border-radius: 4px;
+}
+
+.button:hover {
+  --background-color: var(--brand-primary);
+  --text-color: var(--white);
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.text-input {
+  width: 300px;
+  margin-bottom: 12px;
+}
+
+.fields-container {
+  margin-bottom: 40px;
+}
+
+.file-input {
+  width: 220px;
+  margin-bottom: 12px;
+}
+
+.loading {
+  margin-bottom: 12px;
+  text-align: center;
+}

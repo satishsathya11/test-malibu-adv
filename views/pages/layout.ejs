@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- metaTags -%>
+    <link href="/manifest.json" rel="manifest">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=5.0,minimum-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="<%- title -%>" name="apple-mobile-web-app-title">
+    <link rel="preconnect" href="https://prod-analytics.qlitics.com" crossorigin >
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin >
+
+    <%_ if(enableAds && loadAdsSynchronously) { _%>
+      <script async="async" src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <%_ } _%>
+
+    <%_ if(enableAds) { _%>
+      <script type="text/javascript">
+        window.googletag = window.googletag || {};
+        window.googletag.cmd = window.googletag.cmd || [];
+      </script>
+    <%_ } _%>
+
+    <script type="text/javascript">
+      window.GUMLET_CONFIG = {
+        hosts: [{ current: "<%= cdnImage %>", gumlet: "<%= cdnImage %>" }],
+        lazy_load: true,
+        auto_webp: true,
+        srcset: true
+      }
+    </script>
+    <%# load any CSS fonts just below this, curl -vH "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0" 'https://fonts.googleapis.com/css?family=Lato:400,700|Roboto:400,700' | curl -X POST -s --data-urlencode 'input@-' https://cssminifier.com/raw %>
+    <style>
+      @font-face{font-display:swap;font-family:Lato;font-style:normal;font-weight:400;src:local('Lato Regular'),local('Lato-Regular'),url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wWA.woff) format('woff')}@font-face{font-display:swap;font-family:Lato;font-style:normal;font-weight:700;src:local('Lato Bold'),local('Lato-Bold'),url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh6UVSwiPHw.woff) format('woff')}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:400;src:local('Roboto'),local('Roboto-Regular'),url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff) format('woff')}@font-face{font-display:swap;font-family:Roboto;font-style:normal;font-weight:700;src:local('Roboto Bold'),local('Roboto-Bold'),url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc-.woff) format('woff')}
+    </style>
+    <style>
+      :root { <%_ Object.entries(fontFace.fontSettings).map(([cssVar, {fallback}]) => { _%> --<%= cssVar %>: <%- fallback _%>;<%_ }) _%> }
+      body.fonts-loaded { <%_ Object.entries(fontFace.fontSettings).map(([cssVar, {value}]) => { _%> --<%= cssVar %>: <%- value _%>;<%_ }) _%> }
+    </style>
+
+    <style>
+      <%- cssContent %>
+    </style>
+    <style>
+      <%- criticalCss %>
+    </style>
+    <style data-info="arrow-styles">
+      <%- arrowCss %>
+    </style>
+    <%_ if(pageChunk) { _%>
+    <%_ pageChunk.cssFiles.map(cssFile => {_%>
+      <style data-href="<%= cssFile.path %>"><%- cssFile.content %></style>
+    <%_ }) _%>
+    <%_ pageChunk.jsPaths.map(jsPath => {_%>
+      <link rel="preload" href="<%= jsPath %>" as="script">
+    <%_ }) _%>
+    <%_ } _%>
+    <%_ if(isOnesignalEnable) { _%>
+      <%- oneSignalScript -%>
+    <%_ } _%>
+  </head>
+
+  <body>
+    <%_ if(!placeholderDelay) { _%>
+      <script src="https://cdn.gumlet.com/gumlet.js/2.0/gumlet.min.js" type="text/javascript" defer="defer"></script>
+    <% } else { %>
+      <div id='gumlet-script-generator'></div>
+    <% } %>
+    <% if (isGtmEnable) { %>
+      <%- include ("./partials/noscriptgtm") -%>
+    <% } %>
+    <div class="page-wrapper">
+      <%_ if(pageType !== 'user-login') {%>
+        <div><%- topbar %></div>
+        <header id="nav-bar" class="sticky-header"><%- navbar %></header>
+      <% } %>
+
+      <% if(enableBreakingNews && pageType !== 'user-login') {%>
+        <div id='breaking-news-container'><%- breakingNews -%></div>
+      <% } %>
+      <%_ if(enableAds && pageType !== 'user-login') { _%>
+        <div id='top-ad'><%- topad -%></div>
+      <%_ } _%>
+      <div id="container"><%_ if(contentTemplate) { _%><%- include(contentTemplate) -%><%_ }else { _%><%- content %><%_ } _%>
+        </div>
+      <%_ if(pageType !== 'user-login') {%>
+        <footer id="footer" class="footer-wrapper"><%- footer %></footer>
+      <% } %>
+      <div id="loading-indicator"></div>
+    </div>
+    <%_ if(disableAjaxNavigation) { _%>
+      <script type="text/javascript">window.disableAjaxNavigation = true;</script>
+    <%_ } _%>
+    <script>
+      if(!window.fetch || !window.Array.prototype.map || !window.Promise || !window.URLSearchParams || !window.IntersectionObserver || !window.Set) {
+        s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https://cdn.polyfill.io/v2/polyfill.min.js?features=default,IntersectionObserver,fetch';
+        document.getElementsByTagName('head')[0].appendChild(s);
+      }
+    </script>
+    <script type="text/javascript">
+      <%- fontJsContent %>
+      window.loadFonts(<%- serialize(fontFace.preloadFonts, {isJSON: true}) %>, 'fonts-loaded');
+    </script>
+    <% if (shell) { %>
+      <script type="application/json" id="initial-page"><%- serialize({config: store.getState().qt.config}, {isJSON: true}) -%></script>
+      <% } else { %>
+      <script type="application/json" id="static-page"><%- serialize(store.getState(), {isJSON: true}) -%></script>
+      <% } %>
+    <% if (isGtmEnable) { %>
+      <%- include ("./partials/gtm") -%>
+    <% } %>
+    <% if (isGaEnable) { %>
+      <%- include ("./partials/ga") -%>
+    <% } %>
+    <script type="text/javascript" src="<%= assetPath("app.js") %>" id="app-js" async></script>
+   </body>
+</html>

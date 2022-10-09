@@ -1,0 +1,10 @@
+@media only screen and (max-width: 768px) {
+  :global .arr--content-wrapper .arr--headline,
+  :global .arr--content-wrapper .arr--section-name {
+    margin-bottom: 8px;
+  }
+
+  :global .arr--content-wrapper .arr--section-name {
+    display: block;
+  }
+}

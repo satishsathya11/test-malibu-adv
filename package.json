@@ -1,0 +1,114 @@
+{
+  "name": "quintype-malibu",
+  "version": "1.0.0",
+  "description": "Quintype Starter PWA",
+  "main": "start.js",
+  "repository": "git@github.com:quintype/malibu.git",
+  "author": "Tejas Dinkar <tejas@gja.in>",
+  "license": "MIT",
+  "engines": {
+    "node": "^16.14.2",
+    "npm": "^8.5.0"
+  },
+  "dependencies": {
+    "@loadable/component": "^5.14.1",
+    "@loadable/server": "^5.14.2",
+    "@quintype/arrow": "^3.0.1",
+    "@quintype/bridgekeeper-js": "^2.8.1",
+    "@quintype/components": "^3.0.0",
+    "@quintype/framework": "^7.7.7",
+    "@quintype/seo": "^1.40.10",
+    "axios": "^0.24.0",
+    "fontfaceobserver": "^2.1.0",
+    "lodash": "^4.17.21",
+    "query-string": "^7.0.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-formio": "^4.3.0",
+    "react-modal": "^3.12.1",
+    "react-redux": "^7.2.5",
+    "redux": "^4.0.1",
+    "serialize-javascript": "^6.0.0",
+    "wretch": "^1.4.1"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.15.8",
+    "@lhci/cli": "^0.8.0",
+    "@quintype/build": "^4.0.0",
+    "babel-eslint": "^10.0.3",
+    "check-node-version": "^4.1.0",
+    "cosmiconfig": "^7.0.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^25.2.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-standard": "^4.1.0",
+    "husky": "^7.0.4",
+    "jest": "^27.3.1",
+    "lint-staged": "^11.2.3",
+    "nodemon": "^2.0.14",
+    "postcss": "^8.3.11",
+    "prettier": "2.4.1",
+    "react-test-renderer": "^17.0.2",
+    "stylelint": "^14.0.0",
+    "stylelint-config-css-modules": "^2.2.0",
+    "stylelint-config-recommended-scss": "^5.0.0",
+    "stylelint-scss": "^4.0.0",
+    "svg-sprite-loader": "^6.0.10",
+    "svg-transform-loader": "^2.0.13",
+    "svgo-loader": "^3.0.0",
+    "webpack": "^5.59.1",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "env",
+          "react"
+        ]
+      }
+    }
+  },
+  "scripts": {
+    "analyze-stats": "NODE_ENV=production ANALYZE_STATS=true BABEL_TARGET=browser webpack --profile --mode=production -p",
+    "asset-server": "BABEL_TARGET=browser webpack-dev-server --hot",
+    "compile": "BABEL_TARGET=browser webpack",
+    "windows-asset-server": "webpack-dev-server --hot",
+    "windows-compile": "webpack",
+    "dev-server": "nodemon --watch app/server --watch app/isomorphic --exec 'BABEL_TARGET=node node start.js' --signal SIGHUP",
+    "prune-packages": "rm -rf node_modules && npm install && npm dedupe",
+    "start": "BABEL_TARGET=node node start.js webpack serve",
+    "test": "BABEL_TARGET=node jest",
+    "lint:js": "npx eslint './app/**/*.{js,jsx}'",
+    "lint:js:ci": "npx eslint $(git diff --pretty='' --diff-filter=d --name-only origin/master...HEAD -- '*.js' '*.jsx') ./start.js",
+    "lint:css": "npx stylelint './app/**/*.{scss,css}'",
+    "lint:css:ci": "npx stylelint $(git diff --pretty='' --diff-filter=d --name-only origin/master...HEAD -- '*.css' '*.scss') ./app/assets/stylesheets/app.scss",
+    "lint:ci": "npm run lint:js:ci && npm run lint:css:ci",
+    "check-node-npm": "check-node-version --node '>= 12.13.0' --npm '^6.14.0'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check-node-npm && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "npx eslint --fix",
+      "git add"
+    ],
+    "*.{css,scss}": [
+      "npx prettier --write",
+      "npx stylelint",
+      "git add"
+    ]
+  }
+}

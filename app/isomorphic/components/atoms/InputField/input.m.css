@@ -1,0 +1,9 @@
+.input {
+  outline: none;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding-right: 10px;
+}

@@ -1,0 +1,48 @@
+asset_host: http://localhost:8080
+sketches_host: https://malibu-web.quintype.io
+host_to_api_host:
+  help.lvh.me: https://user-documentation.quintype.io
+host_to_automatic_api_host:
+  - "-web"
+  - ".malibu"
+domain_mapping:
+  subdomain.lvh.me: voices
+  malibu.lvh.me: localhost:3000
+publisher:
+  sso_login:
+    is_enable: true
+    redirect_Url: "<Domain>/auth/v1/oauth/token"
+    callback_Url: "Callback Url"
+    client_id: "Integration-id (number)"
+    subdomain:
+      voices:
+        redirect_Url: "<Domain>/api/auth/v1/oauth/token"
+        callback_Url: "Callback Url"
+  timezone: "Asia/Baku"
+  auto_sso:
+    is_enable: false
+  google_tag_manager:
+    id: "gtm-id"
+    is_enable: true
+  google_analytics:
+    id: "ga-id"
+    is_enable: true
+  breaking_news:
+    is_enable: true
+    interval: 120
+    item_display: 1
+    open_in_new_tab: false
+    pages: [home-page, section-page, tag-page, search-page, story-page, catalog-page, static-page, form-page]
+  should_use_collection: true
+  google_app_id: ""
+  facebook_app_id: ""
+  is_verification_link_flow: true
+  enable_placeholder: true
+  placeholder_delay: 3
+  collectionParams:
+    depth: 2
+    storyLimits:
+      FourColGrid: 8
+      defaultTemplate: 8
+      ArrowThreeColGrid: 4
+    defaultNestedLimit: 4
